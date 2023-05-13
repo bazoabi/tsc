@@ -1,17 +1,21 @@
-console.log('hey there!');
+class Sorter {
+  constructor(public collection: number[]) {}
 
-const logSomething = (): void => {
-  console.log('somethingFIRST');
-};
+  sort(): void {
+    const { length } = this.collection;
 
-function logSomething2(): void {
-  console.log('something2');
+    for (let i = 0; i < length; i++) {
+      for (let j = 0; j < length - i - 1; j++) {
+        if (this.collection[j] > this.collection[j + 1]) {
+          const leftHand = this.collection[j];
+          this.collection[j] = this.collection[j + 1];
+          this.collection[j + 1] = leftHand;
+        }
+      }
+    }
+  }
 }
 
-const hiddenFunc = function logSomething3(): void {
-  console.log('something3');
-};
-
-logSomething();
-logSomething2();
-hiddenFunc();
+const sorter = new Sorter([10, 3, -5, 0]);
+sorter.sort();
+console.log(sorter.collection);
